@@ -226,6 +226,11 @@ namespace BOOKSTORE___ONLINE.Controllers
             return View();
         }
 
+        public ActionResult D()
+        {
+            return View();
+        }
+
         private WebBS db = new WebBS();
 
         public ActionResult XemDonHang()
