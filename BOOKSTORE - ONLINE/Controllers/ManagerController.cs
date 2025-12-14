@@ -5,9 +5,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Razor.Tokenizer.Symbols;
@@ -305,11 +307,12 @@ namespace BOOKSTORE___ONLINE.Controllers
 
         public ActionResult chonSachNhapHang(int id)
         {
-            return View(db.SACHes.ToList().FirstOrDefault(x=>x.MASACH == id));
+            return View(db.SACHes.ToList().FirstOrDefault(x => x.MASACH == id));
         }
 
         [HttpPost]
-        public ActionResult chonSachAction(FormCollection form) {
+        public ActionResult chonSachAction(FormCollection form)
+        {
             int sl = int.Parse(form["soluong"]);
             double giaBan = sl * double.Parse(form["GIABAN"]);
             ViewBag.GIABAN = giaBan;
@@ -328,13 +331,13 @@ namespace BOOKSTORE___ONLINE.Controllers
                         SOLUONG = sl
                     };
                     db.NHAPHANGs.Add(nh);
-                   SACH Sach = db.SACHes.ToList().FirstOrDefault(x=>x.MANHACUNGCAP == mancc && x.MASACH == masach);
-                   Sach.SOLUONGTONKHO = (Sach.SOLUONGTONKHO ?? 0) + sl;
+                    SACH Sach = db.SACHes.ToList().FirstOrDefault(x => x.MANHACUNGCAP == mancc && x.MASACH == masach);
+                    Sach.SOLUONGTONKHO = (Sach.SOLUONGTONKHO ?? 0) + sl;
 
                     db.SaveChanges();
                 };
-                
-                
+
+
             }
             return View(db.NHAPHANGs.ToList());
         }
@@ -368,7 +371,7 @@ namespace BOOKSTORE___ONLINE.Controllers
                     }
 
                 ).ToList();
-                if(!danhSach.Any())
+                if (!danhSach.Any())
                 {
                     TempData["Loi"] = "Không tìm thấy sản phẩm cần tra cứu !";
                     return RedirectToAction("QLSP_NV");
@@ -405,7 +408,7 @@ namespace BOOKSTORE___ONLINE.Controllers
 
         public ActionResult xoaSPView(int id)
         {
-            return View(db.SACHes.FirstOrDefault(x=>x.MASACH == id));
+            return View(db.SACHes.FirstOrDefault(x => x.MASACH == id));
         }
 
         public ActionResult ThemSPVaoKho()
@@ -422,7 +425,7 @@ namespace BOOKSTORE___ONLINE.Controllers
 
         public ActionResult xoaKH(int id)
         {
-            return View(db.KHACHHANGs.FirstOrDefault(x=>x.MaKH == id));
+            return View(db.KHACHHANGs.FirstOrDefault(x => x.MaKH == id));
         }
 
 
@@ -442,18 +445,123 @@ namespace BOOKSTORE___ONLINE.Controllers
             return View(db.VOUCHERs.Where(x => x.MACT == id).ToList());
         }
 
-        public ActionResult cnKM(int id) { 
-            return View(db.VOUCHERs.FirstOrDefault(x=>x.MaVoucher == id));
+        public ActionResult cnKM(int id)
+        {
+            return View(db.VOUCHERs.FirstOrDefault(x => x.MaVoucher == id));
+        }
+
+        public ActionResult ThemSanPhamMoiVaoKho()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ThemAction(
+    FormCollection form,
+    HttpPostedFileBase AnhSach,
+    HttpPostedFileBase MOTAFILE)
+        {
+            int MADANHMUC = int.Parse(form["MADANHMUC"]);
+            int SOLUONGTONKHO = int.Parse(form["SOLUONGTONKHO"]);
+            int MANHACUNGCAP = int.Parse(form["MANHACUNGCAP"]);
+            decimal GIABAN = decimal.Parse(form["GIABAN"]);
+
+            string TENSACH = form["TENSACH"] ?? "";
+            string MADANHMUC_CHILD = form["MADANHMUC_CHILD"] ?? "";
+            string TACGIA = form["TACGIA"] ?? "";
+            string NHAXUATBAN = form["NHAXUATBAN"] ?? "";
+            string MOTACHITIET = form["MOTACHITIET"] ?? "";
+
+            if (string.IsNullOrEmpty(TENSACH))
+            {
+                TempData["Error"] = "Tên sách không được để trống";
+                return RedirectToAction("QLSP_NV");
+            }
+
+            string anhPath = null;
+            string motaPath = null;
+            int maSachMoi;
+
+            using (SqlConnection conn = new SqlConnection(constr))
+            {
+                conn.Open();
+
+                // ===== INSERT SÁCH + LẤY IDENTITY =====
+                string insertSach = @"
+            INSERT INTO SACH
+            (MADANHMUC, MADANHMUC_CHILD, TENSACH, TACGIA, NHAXUATBAN,
+             GIABAN, SOLUONGTONKHO, MANHACUNGCAP,
+             MOTACHITIET, NGAYTHEMSANPHAM, NGAYCAPNHAT)
+            OUTPUT INSERTED.MASACH
+            VALUES
+            (@MADANHMUC, @MADANHMUC_CHILD, @TENSACH, @TACGIA, @NHAXUATBAN,
+             @GIABAN, @SOLUONGTONKHO, @MANHACUNGCAP,
+             @MOTACHITIET, GETDATE(), GETDATE())";
+
+                using (SqlCommand cmd = new SqlCommand(insertSach, conn))
+                {
+                    cmd.Parameters.AddWithValue("@MADANHMUC", MADANHMUC);
+                    cmd.Parameters.AddWithValue("@MADANHMUC_CHILD", MADANHMUC_CHILD);
+                    cmd.Parameters.AddWithValue("@TENSACH", TENSACH);
+                    cmd.Parameters.AddWithValue("@TACGIA", TACGIA);
+                    cmd.Parameters.AddWithValue("@NHAXUATBAN", NHAXUATBAN);
+                    cmd.Parameters.AddWithValue("@GIABAN", GIABAN);
+                    cmd.Parameters.AddWithValue("@SOLUONGTONKHO", SOLUONGTONKHO);
+                    cmd.Parameters.AddWithValue("@MANHACUNGCAP", MANHACUNGCAP);
+                    cmd.Parameters.AddWithValue("@MOTACHITIET", MOTACHITIET);
+
+                    maSachMoi = (int)cmd.ExecuteScalar();
+                }
+
+                // ===== UPLOAD ẢNH =====
+                if (AnhSach != null && AnhSach.ContentLength > 0)
+                {
+                    string folder = Server.MapPath("~/Content/AnhSach");
+                    if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+
+                    string fileName = Path.GetFileName(AnhSach.FileName);
+                    AnhSach.SaveAs(Path.Combine(folder, fileName));
+                    anhPath = "/Content/AnhSach/" + fileName;
+
+                    string insertAnh = "INSERT INTO ANHSACH(MASACH, LINKANH) VALUES(@MASACH,@LINKANH)";
+                    using (SqlCommand cmd = new SqlCommand(insertAnh, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MASACH", maSachMoi);
+                        cmd.Parameters.AddWithValue("@LINKANH", anhPath);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                // ===== UPLOAD FILE MÔ TẢ =====
+                if (MOTAFILE != null && MOTAFILE.ContentLength > 0)
+                {
+                    string folder = Server.MapPath("~/Content/Mota");
+                    if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+
+                    string fileName = Path.GetFileName(MOTAFILE.FileName);
+                    MOTAFILE.SaveAs(Path.Combine(folder, fileName));
+                    motaPath = "/Content/Mota/" + fileName;
+
+                    string updateMota = "UPDATE SACH SET MOTAFILE=@MOTAFILE WHERE MASACH=@MASACH";
+                    using (SqlCommand cmd = new SqlCommand(updateMota, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MOTAFILE", motaPath);
+                        cmd.Parameters.AddWithValue("@MASACH", maSachMoi);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            TempData["Success"] = "Thêm sản phẩm thành công!";
+            return RedirectToAction("QLSP_NV");
         }
     }
+        //CHI
 
 
-    //CHI
+        //KHOA
 
+        //KIET
 
-    //KHOA
-
-    //KIET
-
-    //DAT
-}
+        //DAT
+    }

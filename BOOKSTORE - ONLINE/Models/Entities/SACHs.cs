@@ -65,6 +65,8 @@ namespace BOOKSTORE___ONLINE.Models.Entities
         public string MOTAFILE { get; set; }
 
         public string DiaChiGiaoHang {  get; set; }
+
+        public int MANHACUNGCAP { get; set; }
     }
 
 }

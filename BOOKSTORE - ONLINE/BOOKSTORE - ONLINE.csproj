@@ -494,6 +494,7 @@
     <Content Include="Views\Manager\ToChucKhuyenMai.cshtml" />
     <Content Include="Views\Manager\chonCTKM.cshtml" />
     <Content Include="Views\Manager\cnKM.cshtml" />
+    <Content Include="Views\Manager\ThemSanPhamMoiVaoKho.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
