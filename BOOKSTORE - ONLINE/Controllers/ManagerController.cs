@@ -382,26 +382,61 @@ namespace BOOKSTORE___ONLINE.Controllers
             return PartialView();
         }
 
-        //public ActionResult formQLXK()
-        //{
-        //    using (WebBS db = new WebBS())
-        //    {
-        //        var danhSach = (
-        //            from dh in db.DONHANGs
-        //            from ct in db.CHITIETDONHANGs
-        //            from kh in db.KHACHHANGs
-        //            where dh.MADONHANG == ct.MADONHANG && dh.MAKH == kh.MaKH
+        public ActionResult formQLXK()
+        {
+            /*
+                public int MADONHANG { get; set; }
+                public string TENNHANVIEN { get; set; }
+         
+                public string TENKHACHHANG { get; set; }
 
-        //            select new CHITIETDONHANG
-        //            {
-        //                MADONHANG = ct.MADONHANG
+                public int MASACH {  get; set; }
 
-        //            }
-        //    return View(db.DONHANGs.ToList());
-        //    }
+                public int SOLUONG { get; set; }
+
+                public decimal GIATAITHOIDIEMMUA { get; set; }
+
+                public string DIACHI {  get; set; }
+
+                public string TRANGTHAI {  get; set; }
+
+                public decimal tongTien()
+                {
+                    return GIATAITHOIDIEMMUA * SOLUONG;
+                }
+             */
+            using (WebBS db = new WebBS())
+            {
+                var danhSach = (
+                    from dh in db.DONHANGs
+                    from ct in db.CHITIETDONHANGs
+                    from nv in db.USER_NV
+                    from kh in db.KHACHHANGs
+                    from s in db.SACHes
+                    where dh.MADONHANG == ct.MADONHANG && dh.MAKH == kh.MaKH && nv.MANV == dh.MANV 
+                    && s.MASACH == ct.MASACH
+
+                    select new xuatKhoInFo()
+                    {
+                        MADONHANG = ct.MADONHANG,
+                        TENNHANVIEN = nv.TENNHANVIEN,
+                        TENKHACHHANG = kh.HoTen,
+                        MASACH = ct.MASACH,
+                        SOLUONG =(int) ct.SOLUONG,
+                        TONKHO = (int) s.SOLUONGTONKHO,
+                        GIATAITHOIDIEMMUA = (decimal) ct.GIATAITHOIDIEMMUA,
+                     
 
 
-        //}
+                    }
+                    ).ToList();
+                return View(danhSach);
+
+            }
+          
+
+
+        }
 
         public ActionResult xoaSPView(int id)
         {
@@ -444,6 +479,74 @@ namespace BOOKSTORE___ONLINE.Controllers
 
         public ActionResult cnKM(int id) { 
             return View(db.VOUCHERs.FirstOrDefault(x=>x.MaVoucher == id));
+        }
+
+
+        public ActionResult XacNhanXuatKho(int id)
+        {
+            using (WebBS db = new WebBS())
+            {
+                var danhSach = (
+                    from dh in db.DONHANGs
+                    from ct in db.CHITIETDONHANGs
+                    from nv in db.USER_NV
+                    from kh in db.KHACHHANGs
+                    from s in db.SACHes
+                    where dh.MADONHANG == id && dh.MAKH == kh.MaKH && nv.MANV == dh.MANV
+                    && s.MASACH == ct.MASACH
+
+                    select new xuatKhoInFo()
+                    {
+                        MADONHANG = ct.MADONHANG,
+                        TENNHANVIEN = nv.TENNHANVIEN,
+                        TENKHACHHANG = kh.HoTen,
+                        MASACH = ct.MASACH,
+                        SOLUONG = (int)ct.SOLUONG,
+                        TONKHO = (int)s.SOLUONGTONKHO,
+                        GIATAITHOIDIEMMUA = (decimal)ct.GIATAITHOIDIEMMUA,
+
+
+
+                    }
+                    ).ToList();
+                return View(danhSach);
+
+            }
+
+
+     
+        }
+
+        public ActionResult XuatKhoAction(int id)
+        {
+            //lấy chi tiết đơn hàng
+            var chiTietDon = db.CHITIETDONHANGs.Where(x=>x.MADONHANG ==id);
+
+            foreach(var ct in chiTietDon)
+            {
+                var sach = db.SACHes.FirstOrDefault(x=>x.MASACH == ct.MASACH);
+                if (sach == null)
+                    continue;
+
+                if(sach.SOLUONGTONKHO < ct.SOLUONG)
+                {
+                    TempData["Error"] = $"Sách {sach.TENSACH} không đủ tồn kho!";
+                    return RedirectToAction("XacNhanXuatKho", new { id });
+                }
+
+                //TRỪ TỒN KHO
+                sach.SOLUONGTONKHO -= ct.SOLUONG;
+            }    
+
+            var donHang = db.DONHANGs.FirstOrDefault(x=>x.MADONHANG == id);
+            if(donHang != null)
+            {
+                donHang.TRANGTHAI = "Đã xuất kho";
+            }    
+
+            db.SaveChanges();
+            TempData["ThanhCong"] = "Xuất kho thành công !";
+            return RedirectToAction("formQLXK");
         }
     }
 
