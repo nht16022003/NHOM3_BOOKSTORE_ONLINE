@@ -1,0 +1,80 @@
+﻿@model BOOKSTORE___ONLINE.Models.Entities.Cart
+    @{ 
+        Layout = "~/Views/Shared/Layoutlogin.cshtml";
+        var listAnh = ViewBag.AS as List<BOOKSTORE___ONLINE.Models.Entities.ANHSACHs>;
+    }
+<h2 class="mb-4">Giỏ hàng của bạn</h2>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr class="table-light">
+                            <th scope="col">Sản phẩm</th>
+                            <th scope="col" class="text-center">Giá</th>
+                            <th scope="col" class="text-center">Số lượng</th>
+                            <th scope="col" class="text-end">Tổng cộng</th>
+                            <th scope="col" class="text-center">Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.list)
+                        {
+                            var anh = listAnh.FirstOrDefault(x => x.MASACH == item.MASACH)?.LINKANH ?? "default.jpg";
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="@Url.Content("~/Content/"+ anh)" class="me-3" alt="@item.TENSACH" width="50">
+                                        <span class="fw-bold">@item.TENSACH</span>
+                                    </div>
+                                </td>
+                                <td class="text-center">@item.GIABAN.ToString("N0") VNĐ</td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("UpdateSL","Cart", new {id=item.MASACH, type=2})" class="btn btn-sm btn-outline-danger"
+                                       style="padding: 5px 15px; margin: 5px;">-</a>
+                                    <b>@item.SOLUONG</b>
+                                    <a href="@Url.Action("UpdateSL","Cart", new {id=item.MASACH, type=1})" class="btn btn-sm btn-outline-success"
+                                       style="padding: 5px 15px; margin: 5px;">+</a>
+                                </td>
+                                <td class="text-end fw-bold">@item.ThanhTien.ToString("N0") VNĐ</td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("RemoveFromCart","Cart", new {id = item.MASACH})" class="btn btn-sm btn-outline-danger">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <a href="index.html" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Tiếp tục mua sắm
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white fw-bold">
+                Tóm tắt đơn hàng
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Tổng tiền hàng:</span>
+                    <span class="fw-bold">@Model.TongThanhTien().ToString("N0") VNĐ</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Phí vận chuyển:</span>
+                    <span class="fw-bold">30.000 VNĐ</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between mb-3 text-danger fs-5">
+                    <span class="fw-bold">TỔNG THANH TOÁN:</span>
+                    <span class="fw-bold">@((Model.TongThanhTien()+30000).ToString("N0")) VNĐ</span>
+                </div>
+                <a href="@Url.Action("ThanhToan","Cart", new {ship = 30000})" class="btn btn-success w-100 btn-lg">Thanh toán</a>
+            </div>
+        </div>
+    </div>
+</div>

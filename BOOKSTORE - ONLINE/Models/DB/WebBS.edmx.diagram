@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b2ed2027724f47eb87fc09307b09aec5" Name="Diagram1">
+        <EntityTypeShape EntityType="WebBanSachModel.CHITIETDONHANG" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.CHUONGTRINHKHUYENMAI" Width="1.5" PointX="1.5" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.DANHMUC" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.DANHMUC_CHILD" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.DONHANG" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.GIOHANG" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.GIOHANG_CHITIET" Width="1.5" PointX="7.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.KHACHHANG" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.KHOSACH" Width="1.5" PointX="7.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.LICHSUMUAHANG" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.NHACUNGCAP" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.NHAPHANG" Width="1.5" PointX="10.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.PHANHOIKHACHHANG" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.PHUONGTHUCTHANHTOAN" Width="1.5" PointX="1.5" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.SACH" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.TAIKHOAN" Width="1.5" PointX="3.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.TAIKHOAN_ADMIN" Width="1.5" PointX="10" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.TAIKHOANKHACHHANG" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.USER_ADMIN" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.USER_NV" Width="1.5" PointX="1.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.VOUCHER" Width="1.5" PointX="1.5" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.VOUCHER_KHACHHANG" Width="1.5" PointX="6.25" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.ANHSACH" Width="1.5" PointX="7.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanSachModel.CHITIETSACH" Width="1.5" PointX="7.5" PointY="21.125" IsExpanded="true" />
+        <AssociationConnector Association="WebBanSachModel.FK_CHITIETDONHANG_DONHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_CHITIETDONHANG_SACH" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_VOUCHER_CHUONGTRINHKHUYENMAI" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_DMC_DM" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_SACH_DANHMUC" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_SACH_DANHMUCCH" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_DONHANG_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_DONHANG_PHUONGTHUCTHANHTOAN" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_DONHANG_USERNV" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_DONHANG_VOUCHER" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_LICHSUMUAHANG_DONHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_GIOHANG_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_GIOHANGCHITIET_GIOHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_GIOHANGCHITIET_SACH" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_LICHSUMUAHANG_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_PHANHOIKHACHHANG_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_TAIKHOAN_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_VOUCHERKH_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_MASACH" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_NHAPHANG_NHACC" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_SACH_NHACUNGCAP" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_NHAPHANG_SACH" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_A_sACH" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_CTS_S" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_TAIKHOAN_USERNV" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_TAIKHOAN_USERADMIN" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.FK_VOUCHERKH_VOUCHER" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanSachModel.THANHTOAN" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

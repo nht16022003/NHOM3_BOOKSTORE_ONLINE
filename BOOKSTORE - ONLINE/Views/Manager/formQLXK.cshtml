@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BOOKSTORE___ONLINE.Models.DB.DONHANG>
+
+@{
+    ViewBag.Title = "formQLXK";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">📦 Quản lý xuất kho</h5>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>Mã ĐH</th>
+                            <th>Mã NV</th>
+                            <th>Mã KH</th>
+                            <th>Ngày đặt</th>
+                            <th>Tổng tiền</th>
+                            <th>Địa chỉ giao</th>
+                            <th>Trạng thái</th>
+                            <th>PTTT</th>
+                            <th>Voucher</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@item.MADONHANG</td>
+                                <td class="text-center">@item.MANV</td>
+                                <td class="text-center">@item.MAKH</td>
+                                <td>@item.NgayDat</td>
+                                <td class="text-end">@String.Format("{0:N0}", item.TongTien)</td>
+                                <td>@item.DiaChiGiaoHang</td>
+                                <td class="text-center">
+                                    <span class="badge bg-info">
+                                        @item.TRANGTHAI
+                                    </span>
+                                </td>
+                                <td class="text-center">@item.MAPHUONGPHUC</td>
+                                <td class="text-center">@item.MaVoucher</td>
+                                <td class="text-center">
+                                    @Html.ActionLink(
+                                        "Xuất kho",
+                                        "xuatKho",
+                                        "Manager",
+                                        new {id = item.MADONHANG},
+                                        new { @class = "btn btn-sm btn-success" }
+                                    )
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>

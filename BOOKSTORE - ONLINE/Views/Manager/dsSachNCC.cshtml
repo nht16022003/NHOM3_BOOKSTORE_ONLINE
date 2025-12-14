@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BOOKSTORE___ONLINE.Models.DB.SACH>
+
+<div class="container mt-4">
+
+    <!-- TIÊU ĐỀ + NÚT -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold">📚 Danh sách sách theo nhà cung cấp</h4>
+        @Html.ActionLink("➕ Thêm sách", "Create", null, new { @class = "btn btn-success" })
+    </div>
+
+    <!-- TABLE RESPONSIVE -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Mã NCC</th>
+                    <th>Mã sách</th>
+                    <th>Danh mục</th>
+                    <th>Danh mục con</th>
+                    <th>Tên sách</th>
+                    <th>Tác giả</th>
+                    <th>NXB</th>
+                    <th>Giá bán</th>
+                    <th>Chọn</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@item.MANHACUNGCAP</td>
+                        <td class="text-center">@item.MASACH</td>
+                        <td class="text-center">@item.MADANHMUC</td>
+                        <td class="text-center">@item.MADANHMUC_CHILD</td>
+                        <td>@item.TENSACH</td>
+                        <td>@item.TACGIA</td>
+                        <td>@item.NHAXUATBAN</td>
+                        <td class="text-end">
+                            @String.Format("{0:N0} ₫", item.GIABAN)
+                        </td>
+                        <td class="text-center">
+                            @Html.ActionLink("Chọn", "chonSachNhapHang",
+                                new { id = item.MASACH },
+                                new { @class = "btn btn-sm btn-outline-primary" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

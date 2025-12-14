@@ -1,0 +1,114 @@
+﻿@model BOOKSTORE___ONLINE.Models.DB.SACH
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SACH</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MASACH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MASACH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MADANHMUC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MADANHMUC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MADANHMUC_CHILD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MADANHMUC_CHILD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TENSACH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENSACH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TACGIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TACGIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NHAXUATBAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHAXUATBAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIABAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIABAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SOLUONGTONKHO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLUONGTONKHO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MOTACHITIET)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MOTACHITIET)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYTHEMSANPHAM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYTHEMSANPHAM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYCAPNHAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYCAPNHAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MOTAFILE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MOTAFILE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("xoaSanPhamAction","Manager", FormMethod.Post)) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <a href="@Url.Action("xoaSanPhamAction","Manager", new {id = Model.MASACH})">Xóa sản phẩm</a>
+           
+        </div>
+    }
+</div>

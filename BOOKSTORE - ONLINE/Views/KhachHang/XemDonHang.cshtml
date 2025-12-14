@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BOOKSTORE___ONLINE.Models.Entities.DONHANGVIEWMODEL>
+
+@{
+    ViewBag.Title = "XemDonHang";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+}
+
+<h2>XemDonHang</h2>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Địa chỉ giao hàng</th>
+                <th>Trạng thái</th>
+                <th>Tên sách</th>
+                <th>Số lượng</th>
+                <th>Giá tại thời điểm mua</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.MADONHANG)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NgayDat)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TongTien)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DiaChiGiaoHang)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TRANGTHAI)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TENSACH)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SOLUONG)</td>
+                    <td>@Html.DisplayFor(modelItem => item.GIATAITHOIDIEMMUA)</td>
+                 
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

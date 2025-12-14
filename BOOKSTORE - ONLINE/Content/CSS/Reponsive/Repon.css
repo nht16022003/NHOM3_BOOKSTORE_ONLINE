@@ -1,0 +1,75 @@
+﻿/* --- RESPONSIVE --- */
+
+/* Mặc định PC: 3 cột như bạn đã làm */
+
+/* Tablet (768px – 1024px) */
+@media (max-width: 1024px) {
+    .container-fluid.d-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .colLeft, .colMid, .colRight {
+        width: 90% !important;
+        margin-bottom: 20px;
+    }
+
+    img {
+        width: 70%;
+    }
+}
+
+/* Mobile (dưới 768px) */
+@media (max-width: 768px) {
+    .container-fluid.d-flex {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .colLeft, .colMid, .colRight {
+        width: 100% !important;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    img {
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .card-title {
+        font-size: 14px;
+    }
+
+    .card-text {
+        font-size: 12px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .row .col {
+            width: 50%; /* 2 sản phẩm / hàng ở mobile */
+            padding: 5px;
+        }
+}
+
+/* Mobile nhỏ dưới 480px */
+@media (max-width: 480px) {
+    .row .col {
+        width: 100%; /* 1 sản phẩm / hàng */
+    }
+
+    img {
+        width: 100%;
+    }
+}

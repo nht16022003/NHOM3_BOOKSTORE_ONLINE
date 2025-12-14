@@ -1,0 +1,176 @@
+﻿@model IEnumerable<BOOKSTORE___ONLINE.Models.Entities.DANHMUCs>
+@{
+    var ldmc = ViewBag.DanhMucChild as List<BOOKSTORE___ONLINE.Models.Entities.DANHMUC_CHILDs>;
+}
+<style>
+
+    body {
+        background-color: #F5F9FF;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    a{
+        text-decoration:none;
+    }
+
+    .navbar {
+        background-color: #A7C7E7 !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+        .navbar .nav-link,
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+
+            .navbar .nav-link:hover,
+            .navbar-brand:hover {
+                color: #D9EAFE !important;
+            }
+
+    /* Dropdown menu */
+    .dropdown-menu {
+        background-color: #D9EAFE;
+        border: none;
+    }
+
+        .dropdown-menu .dropdown-item {
+            color: #2a3f54;
+            padding: 10px 15px;
+        }
+
+            .dropdown-menu .dropdown-item:hover {
+                background-color: #A7C7E7;
+                color: white;
+            }
+
+
+    .cart-badge {
+        background-color: #6AA5D9 !important;
+    }
+
+
+    .btn-primary {
+        background-color: #6AA5D9;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #4a8dc5;
+        }
+
+
+    footer {
+        color: #6AA5D9;
+        font-weight: 500;
+    }
+
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .card-title {
+        color: #2a3f54;
+    }
+
+    .card:hover {
+        transform: translateY(-3px);
+        transition: 0.2s;
+    }
+
+    .sidebar {
+        background: #D9EAFE;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    }
+
+    .sidebar-title {
+        font-size: 17px;
+        font-weight: bold;
+        color: #2a3f54;
+        margin-top: 10px;
+    }
+
+    .sidebar-item {
+        background: #A7C7E7;
+        border: none;
+        margin-bottom: 6px;
+        border-radius: 8px;
+        padding: 10px 12px;
+        transition: 0.2s;
+    }
+
+        .sidebar-item a {
+            text-decoration: none;
+            color: white !important;
+            font-weight: 500;
+        }
+
+        .sidebar-item:hover {
+            background: #6AA5D9;
+            transform: translateX(3px);
+        }
+
+
+    .sidebar input {
+        border: 2px solid #A7C7E7;
+        border-radius: 8px;
+    }
+
+        .sidebar input:focus {
+            border-color: #6AA5D9;
+            box-shadow: 0 0 5px #6AA5D9;
+        }
+</style>
+
+<div class="sidebar p-3 rounded">
+
+    <!-- Search by name -->
+    <h5 class="sidebar-title">Tìm kiếm</h5>
+    @using (Html.BeginForm("TimKiemTheoTuKhoa", "KhachHang", FormMethod.Post))
+    {
+        <input type="text" name="keyword" class="form-control mb-3" placeholder="Nhập tên sách...">
+    }
+
+
+    <!-- Category -->
+    <h5 class="sidebar-title">Danh mục</h5>
+    <ul class="list-group mb-3">
+
+        <li class="list-group-item py-1">
+            <a style="color: black !important;" href="@Url.Action("QLSP_NV","Manager" /*new {id = child.MADANHMUC,dm = child.MADANHMUC_CHILD})"*/)">
+                Xem danh sách sản phẩm
+            </a>
+
+        </li>
+        <li class="list-group-item py-1">
+            <a style="color: black !important;" href="@Url.Action("XemDanhSachDonHang","Manager" /*new {id = child.MADANHMUC,dm = child.MADANHMUC_CHILD})"*/)">
+                Xem danh sách đơn hàng
+            </a>
+
+        </li>
+        <li class="list-group-item py-1">
+            <a style="color: black !important;" href="@Url.Action("XemDoanhThu","Manager" /*new {id = child.MADANHMUC,dm = child.MADANHMUC_CHILD})"*/)">
+                Xem doanh thu
+            </a>
+
+        </li>
+        <li class="list-group-item py-1">
+            <a style="color: black !important;" href="@Url.Action("NhapHang","Manager" /*new {id = child.MADANHMUC,dm = child.MADANHMUC_CHILD})"*/)">
+               Nhập hàng
+            </a>
+
+        </li>
+
+
+
+    </ul>
+
+   
+</div>
+
+

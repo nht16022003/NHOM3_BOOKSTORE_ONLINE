@@ -1,0 +1,56 @@
+﻿@model List<BOOKSTORE___ONLINE.Models.Entities.CartItem>
+@{
+    ViewBag.Title = "Xác nhận đơn hàng";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+    var listAnh = ViewBag.AS as List<BOOKSTORE___ONLINE.Models.Entities.ANHSACHs>;
+    var listPTTT = ViewBag.PTTT as List<BOOKSTORE___ONLINE.Models.Entities.PHUONGTHUCTHANHTOANs>;
+}
+
+<h2 class="text-center mb-4">XÁC NHẬN ĐƠN HÀNG</h2>
+
+<div class="container">
+    <div style="width: 45%;" class="container">
+        @foreach (var item in Model)
+        {
+            var anh = listAnh.FirstOrDefault(x => x.MASACH == item.MASACH)?.LINKANH ?? "default.jpg";
+            <div class="container-fluid mb-3">
+                <div class="card h-100">
+                    <img src="@Url.Content("~/Content/" + anh)" class="card-img-top" alt="@item.TENSACH" style="height: 500px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.TENSACH</h5>
+                        <p class="card-text"><strong>Mã sách:</strong> @item.MASACH</p>
+                        <p class="card-text"><strong>Số lượng:</strong> @item.SOLUONG</p>
+                        <p class="card-text"><strong>Giá bán:</strong> @item.GIABAN VNĐ</p>
+                        <p class="card-text"><strong>Thành tiền:</strong> @item.ThanhTien VNĐ</p>
+                        <hr />
+                        <p class="card-text"><strong>Khách hàng:</strong> @ViewBag.KhachHang</p>
+                        <p class="card-text"><strong>Ngày đặt:</strong> @ViewBag.NgayDat</p>
+                        <p class="card-text"><strong>Địa chỉ giao hàng:</strong> @ViewBag.DiaChiGiaoHang</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <!-- Form chọn phương thức thanh toán -->
+        @using (Html.BeginForm("XacNhanThanhToan", "Cart", FormMethod.Post))
+        {
+            <div class="card p-3 mb-3">
+                <h5>Chọn phương thức thanh toán</h5>
+                @foreach (var pt in listPTTT)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                               name="MaPTTT"
+                               value="@pt.MAPHUONGTHUC"
+                               id="pttt_@pt.MAPHUONGTHUC" />
+                        <label class="form-check-label" for="pttt_@pt.MAPHUONGTHUC">
+                            @pt.TENPHUONGTHUC
+                        </label>
+                    </div>
+                }
+
+                <button type="submit" class="btn btn-success mt-3 w-100">Xác nhận đơn hàng</button>
+            </div>
+        }
+    </div>
+</div>

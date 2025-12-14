@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+
+namespace BOOKSTORE___ONLINE.Models.Entities
+{
+    [Table("TAIKHOAN")]
+    public class TAIKHOANs
+    {
+        [Key]
+        public int MaTK { get; set; }
+
+        public int MANV { get; set; }
+        public string TenDangNhap { get; set; }
+
+        public string MatKhau {  get; set; }
+
+        public string VaiTro { get; set; }
+    }
+}

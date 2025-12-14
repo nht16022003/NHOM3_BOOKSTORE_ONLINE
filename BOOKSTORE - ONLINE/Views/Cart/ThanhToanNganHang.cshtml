@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Thanh toán ngân hàng";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+}
+
+<div class="container text-center mt-5">
+
+    @using (Html.BeginForm("XACNHANTHANHTOAN_LUUDB", "Cart", FormMethod.Post))
+    {
+        <h2 class="mb-4">Thanh toán ngân hàng</h2>
+
+        <img src="@Url.Content("~/Content/TTT.jpg")" class="img-fluid mb-4" style="max-width:600px;" />
+
+        <div>
+            <button type="submit" class="btn btn-primary btn-lg">XÁC NHẬN</button>
+        </div>
+    }
+
+</div>

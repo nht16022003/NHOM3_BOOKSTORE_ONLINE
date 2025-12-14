@@ -1,0 +1,140 @@
+﻿@model IEnumerable<BOOKSTORE___ONLINE.Models.Entities.SACHs>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutNhanVien.cshtml";
+    var listAnh = ViewBag.AS as List<BOOKSTORE___ONLINE.Models.Entities.ANHSACHs>;
+}
+<style>
+    img{
+        width: 200px;
+    }
+    table{
+        width: 100%;
+    }
+    th{
+        font-size: small;
+        text-align:center;
+        margin: auto;
+        width:450px;
+    }
+    td{
+        text-align:center;
+    }
+</style>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>QLSP_NV</title>
+</head>
+<body>
+
+    @using (Html.BeginForm("traCuuTonKho", "Manager", FormMethod.Post))
+    {
+        <input type="text" name="tenSP" placeholder="Nhập sản phẩm cần tra cứu" />
+        <button class="btn btn-primary">Tra cứu</button>
+    }
+    @if (TempData["Loi"] != null)
+    {
+        <div class="alert alert-danger py-2">
+            @TempData["Loi"]
+        </div>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                Mã sách
+            </th>
+
+            <th>
+                Mã danh mục
+            </th>
+            <th>
+                Tên sách
+            </th>
+            <th>
+                Tác giả
+            </th>
+            <th>
+                Nhà xuất bản
+            </th>
+            <th>
+                Giá bán
+            </th>
+            <th>
+                Số lượng tồn kho
+            </th>
+            <th>
+                Mô tả ngắn gọn
+            </th>
+            <th>
+                Ngày thêm sản phẩm
+            </th>
+            <th>
+                Ngày cập nhật
+            </th>
+            <th>
+                Ảnh sản phẩm
+            </th>
+            <th>
+                File mô tả
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MASACH)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MADANHMUC_CHILD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENSACH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TACGIA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHAXUATBAN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GIABAN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SOLUONGTONKHO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MOTACHITIET)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYTHEMSANPHAM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYCAPNHAT)
+                </td>
+                <td>
+                    <img src="@Url.Content("~/Content/"+ listAnh.FirstOrDefault(x=>x.MASACH == item.MASACH).LINKANH)" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MOTAFILE)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditKhoNhanVien", new { id = item.MASACH }) |
+                    <a href="@Url.Action("DetailAction","Home", new {id = item.MASACH})">Details</a>
+                    @if (Session["role"] != null && Session["role"].ToString().Trim() == "Admin")
+                    {
+                        @Html.ActionLink("xoaSanPham", "xoaSanPham", "Manager", new { id = item.MASACH }, null);
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

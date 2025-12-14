@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/LayoutLogin.cshtml";
+    ViewBag.Title = "Login";
+}
+<style>
+    html, body {
+        height: 100%; /* Bắt buộc */
+        margin: 0; /* Loại bỏ margin mặc định của body */
+        padding: 0; /* Loại bỏ padding mặc định */
+    }
+
+    input {
+        max-width: none;
+        height: 60px;
+    }
+
+    .border {
+        height: 500px;
+        border: solid 5px #00ffff;
+        border-radius: 15px;
+        box-shadow: #c5ecfd 1px 2px 10px;
+    }
+
+    .btn {
+        padding: 15px 50px; /* tăng chiều ngang bằng padding */
+        display: block; /* block để margin auto hoạt động */
+        margin: 0 auto; /* căn giữa */
+    }
+</style>
+
+@Html.Partial("Error")
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-12 col-md-6 col-lg-4 p-4 border">
+        <h2 class="text-center mb-4">Đăng Nhập</h2>
+        @using (Html.BeginForm("LoginActionNV", "Account", FormMethod.Post))
+        {
+            <div class="mb-3">
+                <label for="tenDangNhap" class="form-label">Tên Đăng Nhập</label>
+                <input type="text" name="tenDangNhap" class="form-control" id="tenDangNhap" placeholder="Nhập tên đăng nhập của bạn">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="matKhau" class="form-label">Password</label>
+                <input type="password" name="matKhau" class="form-control" id="matKhau">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        }
+    </div>
+</div>

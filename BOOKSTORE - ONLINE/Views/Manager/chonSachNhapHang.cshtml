@@ -1,0 +1,100 @@
+﻿@model BOOKSTORE___ONLINE.Models.DB.SACH
+
+<div class="container mt-4">
+
+    @using (Html.BeginForm("chonSachAction", "Manager", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">SACH</h5>
+            </div>
+
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.MASACH, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.MASACH, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MASACH, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.MADANHMUC, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.MADANHMUC, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MADANHMUC, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.MADANHMUC_CHILD, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.MADANHMUC_CHILD, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MADANHMUC_CHILD, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.TENSACH, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.TENSACH, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TENSACH, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.TACGIA, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.TACGIA, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TACGIA, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.NHAXUATBAN, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.NHAXUATBAN, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NHAXUATBAN, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.GIABAN, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.GIABAN, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.GIABAN, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.SOLUONGTONKHO, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.SOLUONGTONKHO, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SOLUONGTONKHO, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.MOTACHITIET, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.MOTACHITIET, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MOTACHITIET, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.MANHACUNGCAP, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.MANHACUNGCAP, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MANHACUNGCAP, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Số lượng hàng cần nhập</label>
+                    <input type="number" name="soluong" class="form-control" />
+                </div>
+
+                <div class="text-end">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary ms-2" })
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

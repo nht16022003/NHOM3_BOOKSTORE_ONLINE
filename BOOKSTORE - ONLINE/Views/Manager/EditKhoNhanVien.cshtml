@@ -1,0 +1,152 @@
+﻿@model BOOKSTORE___ONLINE.Models.Entities.SACHs
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EditKhoNhanVien</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: #f5f6fa;
+            padding: 30px;
+        }
+
+        .card {
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .btn-save {
+            background: #007bff;
+            color: white;
+            font-weight: 600;
+            padding: 10px 18px;
+        }
+
+            .btn-save:hover {
+                background: #0056d2;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card p-4">
+            <h3 class="text-primary fw-bold mb-3">Cập nhật thông tin sách</h3>
+
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+            {
+                @Html.AntiForgeryToken()
+
+        <div class="row g-3">
+
+            <!-- Mã sách -->
+            <div class="col-md-6">
+                <label class="form-label">Mã sách</label>
+                @Html.EditorFor(model => model.MASACH, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Mã danh mục</label>
+                @Html.EditorFor(model => model.MADANHMUC, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Danh mục con</label>
+                @Html.EditorFor(model => model.MADANHMUC_CHILD, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Tên sách</label>
+                @Html.EditorFor(model => model.TENSACH, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Tác giả</label>
+                @Html.EditorFor(model => model.TACGIA, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Nhà xuất bản</label>
+                @Html.EditorFor(model => model.NHAXUATBAN, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Giá bán</label>
+                @Html.EditorFor(model => model.GIABAN, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Số lượng tồn kho</label>
+                @Html.EditorFor(model => model.SOLUONGTONKHO, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Mô tả chi tiết</label>
+                @Html.TextAreaFor(model => model.MOTACHITIET, new { @class = "form-control", rows = 4 })
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Ngày thêm</label>
+                @Html.EditorFor(model => model.NGAYTHEMSANPHAM, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Ngày cập nhật</label>
+                @Html.EditorFor(model => model.NGAYCAPNHAT, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Ảnh sản phẩm</label>
+                <input type="file" name="fileImage" class="form-control" />
+                @if (Model.ANHSANPHAM != null)
+                {
+                    <p class="mt-2">Ảnh hiện tại:</p>
+                    <img src="@Model.ANHSANPHAM" width="120" class="border rounded" />
+                }
+            </div>
+
+
+            <div class="col-md-6">
+                <label class="form-label">Mô tả file</label>
+                <input type="file" name="fileMoTa" class="form-control" />
+
+                @if (Model.MOTAFILE != null)
+                {
+                    <p class="mt-2">File hiện tại:</p>
+                    <a href="@Model.MOTAFILE" target="_blank">Tải file hiện tại</a>
+                }
+            </div>
+
+
+            <div class="col-12 text-center mt-4">
+                <button type="submit" class="btn btn-save">💾 Lưu thay đổi</button>
+            </div>
+
+        </div>
+            }
+
+            <div class="mt-3">
+                @Html.ActionLink("⬅ Quay về danh sách", "Index", null, new { @class = "btn btn-link" })
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

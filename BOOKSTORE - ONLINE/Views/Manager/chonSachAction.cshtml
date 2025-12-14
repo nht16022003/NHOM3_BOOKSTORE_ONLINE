@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BOOKSTORE___ONLINE.Models.DB.NHAPHANG>
+
+<div class="container mt-4">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold">📦 Danh sách nhập hàng</h4>
+        @Html.ActionLink("➕ Create New", "Create", null, new { @class = "btn btn-success" })
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Mã NCC</th>
+                    <th>Mã sách</th>
+                    <th>Tên sách</th>
+                    <th>Số lượng</th>
+                    <th>Chức năng</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@item.MANHACUNGCAP</td>
+                        <td class="text-center">@item.MASACH</td>
+                        <td>@item.TENSACH</td>
+                        <td class="text-center">@item.SOLUONG</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Edit", "Edit", null, new { @class = "btn btn-sm btn-outline-warning" })
+                            @Html.ActionLink("Details", "Details", null, new { @class = "btn btn-sm btn-outline-info ms-1" })
+                            @Html.ActionLink("Delete", "Delete", null, new { @class = "btn btn-sm btn-outline-danger ms-1" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

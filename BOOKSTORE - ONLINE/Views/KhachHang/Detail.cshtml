@@ -1,0 +1,125 @@
+﻿@model BOOKSTORE___ONLINE.Models.Entities.SACHs
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+    var listAnh = ViewBag.AS as List<BOOKSTORE___ONLINE.Models.Entities.ANHSACHs>;
+    var listSPTT = ViewBag.SanPhamTuongTu as List<BOOKSTORE___ONLINE.Models.Entities.SACHs>;
+
+
+}
+
+<style>
+    .colLeft {
+        text-align: center;
+        width: 30%;
+        background-color: #ffffff;
+        border-radius: 15px;
+        margin-right: 10px;
+    }
+
+    img {
+        width: 50%;
+    }
+
+    .colMid {
+        height: 500px;
+        border-radius: 15px;
+        width: 50%;
+        margin-right: 10px;
+    }
+
+    .colRight {
+        height: 500px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        width: 20%;
+    }
+
+    .colMid_Child {
+        margin-top: 5px;
+        background-color: #ffffff;
+        padding: 10px;
+    }
+</style>
+
+<link rel="stylesheet" href="~/Content/CSS//Reponsive/Repon.css" />
+
+<div style="margin-top: 5px;" class="container-fluid d-flex">
+    <div class="colLeft">
+        <dl>
+            <dt>Ảnh sản phẩm</dt>
+            <dd>
+                @if (listAnh != null)
+                {
+                    var anhCuaSanPham = listAnh.Where(a => a.MASACH == Model.MASACH).ToList();
+                    foreach (var anh in anhCuaSanPham)
+                    {
+                        <img src="@Url.Content("~/Content/" + anh.LINKANH)" alt="Ảnh sách" style="height:300px; margin:5px;" />
+                    }
+                }
+            </dd>
+        </dl>
+        <h4>Mô tả chi tiết sản phẩm</h4>
+        <!--<div>Html.Raw(ViewBag.HienThiCT.Replace("\n", "<br/>"))</div>-->
+    </div>
+    <div class="colMid">
+        <div class="colMid_Child">
+            <p style="font-size: large; margin-top: 5px;">Tác giả: <span>@Html.DisplayFor(model => model.TACGIA) </span></p>
+            <h2>@Html.DisplayFor(model => model.TENSACH)</h2>
+            <h3 style="color: red; font-weight: bold">@Html.DisplayFor(model => model.GIABAN) VNĐ</h3>
+        </div>
+        <div class="colMid_Child">
+            <p style="font-weight:bold; font-size:larger;">Thông tin vận chuyển</p>
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <p style="font-size: large;">  @ViewBag.DiaChi </p>
+                    </td>
+                    <td style="text-align:right;">
+                        <a style="text-decoration:none;" href="@Url.Action("", "")">Đổi</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <hr />
+        <div class="colMid_Child">
+            <p style="font-weight:bold; font-size:larger;">Sản phẩm tương tự</p>
+            <div class="container text-center">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <!-- 4 card / hàng -->
+                    @foreach (var item in listSPTT)
+                    {
+                        var anh = listAnh.FirstOrDefault(x => x.MASACH == item.MASACH)?.LINKANH ?? "default.jpg";
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="@Url.Content("~/Content/" + anh)" class="card-img-top" alt="@item.TENSACH">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">@item.TENSACH</h5>
+                                    <p class="card-text flex-grow-1">@item.MOTACHITIET</p>
+                                    <p class="card-text text-bg-danger">@item.GIABAN</p>
+                                    <a href="@Url.Action("DetailAction","Home", new { id = item.MASACH })" class="btn btn-primary mt-auto">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="colRight">
+        <div style="margin-left:5px; margin-top: 10px;">
+            <button style="width:100% !important; padding: 10px;" type="button" class="btn btn-danger">MUA NGAY</button>
+        </div>
+        <div style="margin-left:5px; margin-top: 10px;">
+            <button style="width:100% !important; padding: 10px;" type="button" class="btn btn-outline-primary">
+                <a href="@Url.Action("AddToCart", "Cart", new {id = Model.MASACH})">THÊM VÀO GIỎ HÀNG</a>
+            </button>
+        </div>
+        <div style="margin-left:5px; margin-top: 10px;">
+            <button style="width:100% !important; padding: 10px;" type="button" class="btn btn-outline-primary">MUA TRƯỚC TRẢ SAU</button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BOOKSTORE___ONLINE.Models.Entities.ThongTinTonKho>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENKHO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MASACH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TENSACH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SOLUONGTONKHO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENKHO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MASACH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENSACH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SOLUONGTONKHO)
+        </td>
+       
+    </tr>
+}
+
+</table>
