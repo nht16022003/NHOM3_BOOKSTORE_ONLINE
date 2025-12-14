@@ -403,9 +403,47 @@ namespace BOOKSTORE___ONLINE.Controllers
 
         //}
 
+        public ActionResult xoaSPView(int id)
+        {
+            return View(db.SACHes.FirstOrDefault(x=>x.MASACH == id));
+        }
+
         public ActionResult ThemSPVaoKho()
         {
             return View();
+        }
+
+
+        public ActionResult kHACH()
+        {
+            return View(db.KHACHHANGs.ToList());
+        }
+
+
+        public ActionResult xoaKH(int id)
+        {
+            return View(db.KHACHHANGs.FirstOrDefault(x=>x.MaKH == id));
+        }
+
+
+        public ActionResult EditKH(int id)
+        {
+            return View(db.KHACHHANGs.FirstOrDefault(x => x.MaKH == id));
+        }
+
+
+        public ActionResult ToChucKhuyenMai()
+        {
+            return View(db.CHUONGTRINHKHUYENMAIs.ToList());
+        }
+
+        public ActionResult chonCTKM(string id)
+        {
+            return View(db.VOUCHERs.Where(x => x.MACT == id).ToList());
+        }
+
+        public ActionResult cnKM(int id) { 
+            return View(db.VOUCHERs.FirstOrDefault(x=>x.MaVoucher == id));
         }
     }
 

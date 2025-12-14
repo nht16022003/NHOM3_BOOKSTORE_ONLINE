@@ -1,0 +1,105 @@
+﻿@model BOOKSTORE___ONLINE.Models.DB.SACH
+
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm border-0">
+
+        <!-- HEADER -->
+        <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">
+                ⚠️ Xác nhận xóa sản phẩm
+            </h5>
+        </div>
+
+        <!-- BODY -->
+        <div class="card-body">
+
+            <div class="alert alert-warning">
+                <strong>Lưu ý:</strong> Hành động này <b>không thể hoàn tác</b>.
+                Vui lòng kiểm tra kỹ thông tin trước khi xóa.
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <dl class="row mb-0">
+                        <dt class="col-sm-5">Mã sách</dt>
+                        <dd class="col-sm-7">@Model.MASACH</dd>
+
+                        <dt class="col-sm-5">Danh mục</dt>
+                        <dd class="col-sm-7">@Model.MADANHMUC</dd>
+
+                        <dt class="col-sm-5">Danh mục con</dt>
+                        <dd class="col-sm-7">@Model.MADANHMUC_CHILD</dd>
+
+                        <dt class="col-sm-5">Tên sách</dt>
+                        <dd class="col-sm-7 fw-bold text-primary">
+                            @Model.TENSACH
+                        </dd>
+
+                        <dt class="col-sm-5">Tác giả</dt>
+                        <dd class="col-sm-7">@Model.TACGIA</dd>
+
+                        <dt class="col-sm-5">Nhà xuất bản</dt>
+                        <dd class="col-sm-7">@Model.NHAXUATBAN</dd>
+                    </dl>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <dl class="row mb-0">
+                        <dt class="col-sm-5">Giá bán</dt>
+                        <dd class="col-sm-7 text-danger fw-bold">
+                            @String.Format("{0:N0} ₫", Model.GIABAN)
+                        </dd>
+
+                        <dt class="col-sm-5">Tồn kho</dt>
+                        <dd class="col-sm-7">@Model.SOLUONGTONKHO</dd>
+
+                        <dt class="col-sm-5">Nhà cung cấp</dt>
+                        <dd class="col-sm-7">@Model.MANHACUNGCAP</dd>
+
+                        <dt class="col-sm-5">Ngày thêm</dt>
+                        <dd class="col-sm-7">@Model.NGAYTHEMSANPHAM</dd>
+
+                        <dt class="col-sm-5">Ngày cập nhật</dt>
+                        <dd class="col-sm-7">@Model.NGAYCAPNHAT</dd>
+
+                        <dt class="col-sm-5">File mô tả</dt>
+                        <dd class="col-sm-7">@Model.MOTAFILE</dd>
+                    </dl>
+
+                </div>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <hr />
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-danger px-4">
+                        🗑️ Xóa sản phẩm
+                    </button>
+
+                    @Html.ActionLink(
+                        "Hủy bỏ",
+                        "Index",
+                        null,
+                        new { @class = "btn btn-outline-secondary ms-2" }
+                    )
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

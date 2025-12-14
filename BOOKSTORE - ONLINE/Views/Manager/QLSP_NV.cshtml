@@ -129,7 +129,7 @@
                     <a href="@Url.Action("DetailAction","Home", new {id = item.MASACH})">Details</a>
                     @if (Session["role"] != null && Session["role"].ToString().Trim() == "Admin")
                     {
-                        @Html.ActionLink("xoaSanPham", "xoaSanPham", "Manager", new { id = item.MASACH }, null);
+                       @Url.Action("xoaSPView","Manager", new {id = item.MASACH})
                     }
                 </td>
             </tr>

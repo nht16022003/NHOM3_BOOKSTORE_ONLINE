@@ -1,0 +1,81 @@
+﻿@model BOOKSTORE___ONLINE.Models.DB.KHACHHANG
+
+@{
+    ViewBag.Title = "Xóa khách hàng";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow-sm border-0">
+
+        <!-- HEADER -->
+        <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">⚠️ Xác nhận xóa khách hàng</h5>
+        </div>
+
+        <!-- BODY -->
+        <div class="card-body">
+
+            <div class="alert alert-warning">
+                Bạn có chắc chắn muốn <strong>xóa khách hàng</strong> này không?
+                <br />
+                <span class="text-danger">Hành động này không thể hoàn tác.</span>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <p><strong>Mã KH:</strong> @Model.MaKH</p>
+                    <p><strong>Họ tên:</strong> @Model.HoTen</p>
+                    <p><strong>Ngày sinh:</strong> @Model.NgaySinh</p>
+                    <p><strong>Giới tính:</strong> @Model.GioiTinh</p>
+                    <p><strong>SĐT:</strong> @Model.SDT</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>Email:</strong> @Model.Email</p>
+                    <p><strong>Địa chỉ:</strong> @Model.DiaChi</p>
+                    <p><strong>CCCD:</strong> @Model.CMND_CCCD</p>
+                    <p>
+                        <strong>Loại khách hàng:</strong>
+                        @if (Model.LoaiKhachHang == "VIP")
+                        {
+                            <span class="badge bg-warning text-dark">VIP</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Thường</span>
+                        }
+                    </p>
+                    <p><strong>Ngày tạo:</strong> @Model.NgayTao</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="card-footer text-end">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <button type="submit" class="btn btn-danger">
+                    🗑️ Xóa khách hàng
+                </button>
+
+                @Html.ActionLink(
+                    "Quay lại",
+                    "Index",
+                    null,
+                    new { @class = "btn btn-outline-secondary ms-2" }
+                )
+            }
+
+        </div>
+
+    </div>
+
+</div>

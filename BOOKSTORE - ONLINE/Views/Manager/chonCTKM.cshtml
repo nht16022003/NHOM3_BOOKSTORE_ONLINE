@@ -1,0 +1,89 @@
+﻿@model IEnumerable<BOOKSTORE___ONLINE.Models.DB.VOUCHER>
+
+@{
+    ViewBag.Title = "Chọn Voucher theo CTKM";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm border-0">
+
+        <!-- HEADER -->
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">🏷️ Danh sách Voucher</h5>
+
+            @Html.ActionLink(
+                "➕ Tạo voucher",
+                "Create",
+                null,
+                new { @class = "btn btn-light btn-sm fw-bold" }
+            )
+        </div>
+
+        <!-- BODY -->
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle mb-0">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th style="width:120px;">Mã CT</th>
+                            <th style="width:120px;">Mã Voucher</th>
+                            <th>Tên Voucher</th>
+                            <th style="width:120px;">Giảm giá</th>
+                            <th style="width:90px;">SL</th>
+                            <th style="width:160px;">Bắt đầu</th>
+                            <th style="width:160px;">Kết thúc</th>
+                            <th style="width:120px;">Trạng thái</th>
+                            <th style="width:190px;">Thao tác</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center fw-semibold">@item.MACT</td>
+                                <td class="text-center">@item.MaVoucher</td>
+                                <td class="fw-semibold">@item.TenVoucher</td>
+
+                                <td class="text-end text-danger fw-bold">
+                                    @String.Format("{0:N0} ₫", item.GiamGia)
+                                </td>
+
+                                <td class="text-center">@item.SOLUONG</td>
+                                <td class="text-center">@item.NgayBatDau</td>
+                                <td class="text-center">@item.NgayKetThuc</td>
+
+                                <td class="text-center">
+                                    @if (item.TrangThai != null && item.TrangThai.ToString().Trim().ToLower() == "active")
+                                    {
+                                        <span class="badge bg-success">Active</span>
+                                    }
+                                    else if (item.TrangThai != null && item.TrangThai.ToString().Trim().ToLower() == "expired")
+                                    {
+                                        <span class="badge bg-secondary">Expired</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning text-dark">@item.TrangThai</span>
+                                    }
+                                </td>
+
+                                <td class="text-center">
+                                    <a href="@Url.Action("cnKM","Manager", new {id = item.MaVoucher})">Cập nhật</a>
+                                    @Html.ActionLink("Details", "Details", new { id = item.MaVoucher }, new { @class = "btn btn-sm btn-outline-info ms-1" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.MaVoucher }, new { @class = "btn btn-sm btn-outline-danger ms-1" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>

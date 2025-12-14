@@ -1,0 +1,114 @@
+﻿@model BOOKSTORE___ONLINE.Models.DB.KHACHHANG
+
+@{
+    ViewBag.Title = "Chỉnh sửa khách hàng";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow-sm border-0">
+
+        <!-- HEADER -->
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">✏️ Chỉnh sửa thông tin khách hàng</h5>
+        </div>
+
+        <!-- BODY -->
+        <div class="card-body">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                <div class="row">
+
+                    <!-- CỘT TRÁI -->
+                    <div class="col-md-6">
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.MaKH, new { @class = "form-label fw-semibold" })
+                            @Html.EditorFor(m => m.MaKH, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.HoTen, new { @class = "form-label fw-semibold" })
+                            @Html.EditorFor(m => m.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.NgaySinh, new { @class = "form-label fw-semibold" })
+                            @Html.EditorFor(m => m.NgaySinh, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.GioiTinh, new { @class = "form-label fw-semibold" })
+                            @Html.DropDownListFor(
+                                m => m.GioiTinh,
+                                new SelectList(new[] { "Nam", "Nữ" }),
+                                "-- Chọn giới tính --",
+                                new { @class = "form-select" }
+                            )
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.SDT, new { @class = "form-label fw-semibold" })
+                            @Html.EditorFor(m => m.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                    </div>
+
+                    <!-- CỘT PHẢI -->
+                    <div class="col-md-6">
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.Email, new { @class = "form-label fw-semibold" })
+                            @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.DiaChi, new { @class = "form-label fw-semibold" })
+                            @Html.EditorFor(m => m.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.CMND_CCCD, new { @class = "form-label fw-semibold" })
+                            @Html.EditorFor(m => m.CMND_CCCD, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.LoaiKhachHang, new { @class = "form-label fw-semibold" })
+                            @Html.DropDownListFor(
+                                m => m.LoaiKhachHang,
+                                new SelectList(new[] { "ThongThuong", "VIP" }),
+                                new { @class = "form-select" }
+                            )
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.NgayTao, new { @class = "form-label fw-semibold" })
+                            @Html.EditorFor(m => m.NgayTao, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- BUTTON -->
+                <div class="text-end mt-3">
+                    <button type="submit" class="btn btn-primary">
+                        💾 Lưu thay đổi
+                    </button>
+                    @Html.ActionLink(
+                        "Quay lại",
+                        "Index",
+                        null,
+                        new { @class = "btn btn-outline-secondary ms-2" }
+                    )
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

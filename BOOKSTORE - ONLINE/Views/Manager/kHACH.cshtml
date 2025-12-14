@@ -1,0 +1,100 @@
+﻿@model IEnumerable<BOOKSTORE___ONLINE.Models.DB.KHACHHANG>
+
+@{
+    ViewBag.Title = "Quản lý khách hàng";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm border-0">
+
+        <!-- HEADER -->
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">👥 Danh sách khách hàng</h5>
+
+            @Html.ActionLink(
+                "➕ Thêm khách hàng",
+                "Create",
+                null,
+                new { @class = "btn btn-light btn-sm fw-bold" }
+            )
+        </div>
+
+        <!-- BODY -->
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle table-bordered">
+
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>Mã KH</th>
+                            <th>Họ tên</th>
+                            <th>Ngày sinh</th>
+                            <th>Giới tính</th>
+                            <th>SĐT</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>CCCD</th>
+                            <th>Loại KH</th>
+                            <th>Ngày tạo</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@item.MaKH</td>
+                                <td class="fw-semibold">@item.HoTen</td>
+                                <td class="text-center">@item.NgaySinh</td>
+                                <td class="text-center">@item.GioiTinh</td>
+                                <td>@item.SDT</td>
+                                <td>@item.Email</td>
+                                <td>@item.DiaChi</td>
+                                <td>@item.CMND_CCCD</td>
+
+                                <td class="text-center">
+                                    @if (item.LoaiKhachHang == "VIP")
+                                    {
+                                        <span class="badge bg-warning text-dark">VIP</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Thường</span>
+                                    }
+                                </td>
+
+                                <td class="text-center">@item.NgayTao</td>
+
+                                <td class="text-center">
+                                    @Html.ActionLink(
+                                        "Edit",
+                                        "EditKH",
+                                        new { id = item.MaKH },
+                                        new { @class = "btn btn-sm btn-outline-warning" }
+                                    )
+                                    @Html.ActionLink(
+                                        "Details",
+                                        "Details",
+                                        new { id = item.MaKH },
+                                        new { @class = "btn btn-sm btn-outline-info ms-1" }
+                                    )
+                                    @if (Session["role"] != null && Session["role"].ToString().Trim() == "Admin")
+                                    {
+                                        @Url.Action("xoaKH", "Manager", new { id = item.MaKH })
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -487,6 +487,13 @@
     <Content Include="Views\Manager\DanhMuc_NhanVienPartial.cshtml" />
     <Content Include="Views\Manager\formQLXK.cshtml" />
     <Content Include="Views\Manager\ThemSPVaoKho.cshtml" />
+    <Content Include="Views\Manager\xoaSPView.cshtml" />
+    <Content Include="Views\Manager\kHACH.cshtml" />
+    <Content Include="Views\Manager\xoaKH.cshtml" />
+    <Content Include="Views\Manager\EditKH.cshtml" />
+    <Content Include="Views\Manager\ToChucKhuyenMai.cshtml" />
+    <Content Include="Views\Manager\chonCTKM.cshtml" />
+    <Content Include="Views\Manager\cnKM.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
