@@ -77,14 +77,16 @@
                                         new { @class = "btn btn-sm btn-outline-warning" }
                                     )
                                     @Html.ActionLink(
-                                        "Details",
-                                        "Details",
+                                        "Lịch sử mua hàng",
+                                        "lichSuMuaHang",
                                         new { id = item.MaKH },
                                         new { @class = "btn btn-sm btn-outline-info ms-1" }
-                                    )
+                                    
+                                  
+)
                                     @if (Session["role"] != null && Session["role"].ToString().Trim() == "Admin")
                                     {
-                                        @Url.Action("xoaKH", "Manager", new { id = item.MaKH })
+                                        <a href="@Url.Action("xoaKH", "Manager", new { id = item.MaKH })">Xóa </a>
                                     }
                                 </td>
                             </tr>

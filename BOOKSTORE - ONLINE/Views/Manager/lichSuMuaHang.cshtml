@@ -1,0 +1,103 @@
+﻿@model IEnumerable<BOOKSTORE___ONLINE.Models.Entities.ChiTietLichSu>
+
+@{
+    ViewBag.Title = "Lịch sử mua hàng";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+}
+<style>
+    table th {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+    }
+
+    table td {
+        font-size: 0.9rem;
+    }
+
+    .badge {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+    }
+</style>
+
+
+<div class="container mt-4">
+
+    <!-- TIÊU ĐỀ -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold text-primary mb-0">
+            <i class="bi bi-clock-history me-2"></i>Lịch sử mua hàng
+        </h4>
+    </div>
+
+    <!-- CARD -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>Mã KH</th>
+                            <th>Khách hàng</th>
+                            <th>Mã đơn</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Giá tại thời điểm mua</th>
+                            <th>Tổng tiền</th>
+                            <th>Ngày đặt</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center fw-semibold">@item.MaKH</td>
+
+                                <td>@item.TenKH</td>
+
+                                <td class="text-center">
+                                    <span class="badge bg-secondary">@item.MADONHANG</span>
+                                </td>
+
+                                <td>@item.TENSACH</td>
+
+                                <td class="text-center">@item.SOLUONG</td>
+
+                                <td class="text-end text-nowrap">
+                                    @String.Format("{0:N0} ₫", item.GIATAITHOIDIEMMUA)
+                                </td>
+
+                                <td class="text-end fw-bold text-danger text-nowrap">
+                                    @String.Format("{0:N0} ₫", item.tongTien)
+                                </td>
+
+                                <td class="text-center text-nowrap">
+                                    @item.NgayDat.ToString("dd/MM/yyyy")
+                                </td>
+
+                                <td class="text-center">
+                                    @if (item.TRANGTHAI == "Hoàn thành")
+                                    {
+                                        <span class="badge bg-success">Hoàn thành</span>
+                                    }
+                                    else if (item.TRANGTHAI == "Đang xử lý")
+                                    {
+                                        <span class="badge bg-warning text-dark">Đang xử lý</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">@item.TRANGTHAI</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -481,6 +481,7 @@ namespace BOOKSTORE___ONLINE.Controllers
             return View(db.VOUCHERs.FirstOrDefault(x=>x.MaVoucher == id));
         }
 
+<<<<<<< Updated upstream
 
         public ActionResult XacNhanXuatKho(int id)
         {
@@ -547,6 +548,39 @@ namespace BOOKSTORE___ONLINE.Controllers
             db.SaveChanges();
             TempData["ThanhCong"] = "Xuất kho thành công !";
             return RedirectToAction("formQLXK");
+=======
+        public ActionResult lichSuMuaHang(int id)
+        {
+            using (WebBS db = new WebBS())
+            {
+                var dsls = (
+
+                       from kh in db.KHACHHANGs
+                       where kh.MaKH == id
+                       from dh in db.DONHANGs.Where(d => d.MAKH == kh.MaKH)
+                       from ct in db.CHITIETDONHANGs.Where(c => c.MADONHANG == dh.MADONHANG)
+                       from s in db.SACHes.Where(sa => sa.MASACH == ct.MASACH)
+
+
+                       select new ChiTietLichSu
+                        {
+                            MaKH = kh.MaKH,
+                            TenKH = kh.HoTen,
+                            MADONHANG = dh.MADONHANG,
+                            TENSACH = s.TENSACH,
+                            SOLUONG = (int)ct.SOLUONG,
+                            NgayDat = (DateTime)dh.NgayDat,
+                            GIATAITHOIDIEMMUA = (decimal) ct.GIATAITHOIDIEMMUA,
+                            TRANGTHAI = dh.TRANGTHAI
+                        }
+                        ).ToList();
+                return View(dsls);
+            }    
+                    
+           
+                   
+
+>>>>>>> Stashed changes
         }
     }
 

@@ -238,6 +238,7 @@
     <Compile Include="Models\Entities\Cart.cs" />
     <Compile Include="Models\Entities\CartItem.cs" />
     <Compile Include="Models\Entities\CHITIETDONHANGs.cs" />
+    <Compile Include="Models\Entities\ChiTietLichSu.cs" />
     <Compile Include="Models\Entities\CHITIETSACHs.cs" />
     <Compile Include="Models\Entities\DANHMUCs.cs" />
     <Compile Include="Models\Entities\DANHMUC_CHILDs.cs" />
@@ -494,7 +495,11 @@
     <Content Include="Views\Manager\ToChucKhuyenMai.cshtml" />
     <Content Include="Views\Manager\chonCTKM.cshtml" />
     <Content Include="Views\Manager\cnKM.cshtml" />
+<<<<<<< Updated upstream
     <Content Include="Views\Manager\XacNhanXuatKho.cshtml" />
+=======
+    <Content Include="Views\Manager\lichSuMuaHang.cshtml" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
