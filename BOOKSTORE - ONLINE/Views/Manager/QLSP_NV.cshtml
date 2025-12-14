@@ -52,8 +52,15 @@
     }
     @if (TempData["Success"] != null)
     {
-        <div class="alert alert-danger">
+        <div class="alert alert-success">
             @TempData["Success"]
+        </div>
+    }
+
+    @if (TempData["ThanhCong"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["ThanhCong"]
         </div>
     }
 

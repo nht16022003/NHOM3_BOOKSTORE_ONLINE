@@ -241,30 +241,28 @@ namespace BOOKSTORE___ONLINE.Controllers
 
         public ActionResult xoaSanPhamAction(int id)
         {
-            var spdelete = db.SACHes.FirstOrDefault(x => x.MASACH == id);
-
-            if (spdelete != null)
+            try
             {
-                // Xóa các chi tiết đơn hàng liên quan
-                var chiTietDH = db.CHITIETDONHANGs.Where(x => x.MASACH == id).ToList();
-                foreach (var ct in chiTietDH)
+                using (var conn = new SqlConnection(
+                    ConfigurationManager.ConnectionStrings["QLWSACH"].ConnectionString))
                 {
-                    db.CHITIETDONHANGs.Remove(ct);
+                    using (var cmd = new SqlCommand("sp_XoaSach", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@MASACH", id);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
                 }
-
-                var chitietsach = db.CHITIETSACHes.Where(x => x.MASACH == id).ToList();
-                foreach (var ct in chitietsach)
-                {
-                    db.CHITIETSACHes.Remove(ct);
-                }
-
-                db.SACHes.Remove(spdelete);
-                db.SaveChanges();
-
-                TempData["ThanhCong"] = $"Xóa sản phẩm {spdelete.TENSACH} thành công !";
+                TempData["ThanhCong"] = "Xóa sản phẩm thành công!";
+            }
+            catch (Exception ex) {
+                TempData["Loi"] = "Xóa sản phẩm thất bại: " + ex.Message;
             }
 
-            return RedirectToAction("ThongBaoThanhCong", "Account");
+            return RedirectToAction("QLSP_NV", SACHs.layDanhSachSanPham());
+       
         }
 
 
