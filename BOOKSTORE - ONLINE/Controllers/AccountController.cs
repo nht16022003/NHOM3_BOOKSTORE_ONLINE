@@ -9,6 +9,8 @@ using System.Data;
 using Microsoft.Ajax.Utilities;
 using BOOKSTORE___ONLINE.Models.DB;
 using System.Runtime.InteropServices;
+using System.Web.ModelBinding;
+using System.Web.WebPages.Html;
 
 namespace BOOKSTORE___ONLINE.Controllers
 {
@@ -58,12 +60,46 @@ namespace BOOKSTORE___ONLINE.Controllers
              */
 
             string hoten = form["HoTen"];
-            DateTime ngaysinh = DateTime.Parse(form["NgaySinh"]);
+            string ngaySinhStr = form["NgaySinh"];
+
+            DateTime ngaysinh;
+            if (!DateTime.TryParse(ngaySinhStr, out ngaysinh)) {
+                ModelState.AddModelError("NgaySinh", "Ngày sinh không hợp lệ!");
+                return View();
+            }
+
             string gioitinh = form["GioiTinh"];
             string sodt = form["SDT"];
             string email = form["Email"];
             string diachi = form["DiaChi"];
             string CMND = form["CMND_CCCD"];
+
+
+            if (string.IsNullOrEmpty(hoten)) {
+                ModelState.AddModelError("HoTen", "Họ tên không được để trống!");
+            }
+       
+
+            if (string.IsNullOrWhiteSpace(gioitinh))
+                ModelState.AddModelError("GioiTinh", "Vui lòng chọn giới tính");
+
+            if (string.IsNullOrWhiteSpace(sodt))
+                ModelState.AddModelError("SDT", "Số điện thoại không được để trống");
+
+            if (string.IsNullOrWhiteSpace(email))
+                ModelState.AddModelError("Email", "Email không được để trống");
+
+            if (string.IsNullOrWhiteSpace(diachi))
+                ModelState.AddModelError("DiaChi", "Địa chỉ không được để trống");
+
+            if (string.IsNullOrWhiteSpace(CMND))
+                ModelState.AddModelError("CMND_CCCD", "CMND/CCCD không được để trống");
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
 
             KHACHHANG KH = new KHACHHANG()
             {
