@@ -219,6 +219,8 @@ namespace BOOKSTORE___ONLINE.Controllers
             return View("Index", findrs);
         }
 
+      
+
         public ActionResult Detail()
         {
             return View();
