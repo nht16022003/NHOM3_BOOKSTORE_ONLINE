@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Razor.Tokenizer.Symbols;
@@ -381,22 +382,30 @@ namespace BOOKSTORE___ONLINE.Controllers
             return PartialView();
         }
 
-        public ActionResult formQLXK()
-        {
-            using (WebBS db = new WebBS())
-            {
-                var danhSach = (
-                    from dh in db.DONHANGs
-                    from ct in db.CHITIETDONHANGs
-                    from kh in db.KHACHHANGs
-                    where dh.MADONHANG == ct.MADONHANG && dh.MAKH == kh.MaKH
+        //public ActionResult formQLXK()
+        //{
+        //    using (WebBS db = new WebBS())
+        //    {
+        //        var danhSach = (
+        //            from dh in db.DONHANGs
+        //            from ct in db.CHITIETDONHANGs
+        //            from kh in db.KHACHHANGs
+        //            where dh.MADONHANG == ct.MADONHANG && dh.MAKH == kh.MaKH
 
-                    select new CHITIETDONHANG
-                    {
-                        MADONHANG = ct.MADONHANG,
-                        
-                    }
-            return View(db.DONHANGs.ToList());
+        //            select new CHITIETDONHANG
+        //            {
+        //                MADONHANG = ct.MADONHANG
+
+        //            }
+        //    return View(db.DONHANGs.ToList());
+        //    }
+
+
+        //}
+
+        public ActionResult ThemSPVaoKho()
+        {
+            return View();
         }
     }
 

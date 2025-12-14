@@ -12,125 +12,201 @@
     <link rel="stylesheet" href="~/Content/CSS/bootstrap.min.css" />
 
     <style>
-        
+
+        /* =======================
+   GLOBAL
+======================= */
         body {
             background-color: #F5F9FF;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2a3f54;
         }
 
-       
+        a {
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* =======================
+   NAVBAR
+======================= */
         .navbar {
             background-color: #A7C7E7 !important;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
 
-            .navbar .nav-link,
-            .navbar-brand {
+        .navbar-brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff !important;
+        }
+
+        .navbar .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 8px;
+        }
+
+            .navbar .nav-link:hover {
+                background-color: rgba(255,255,255,0.15);
                 color: #ffffff !important;
-                font-weight: 500;
             }
 
-                .navbar .nav-link:hover,
-                .navbar-brand:hover {
-                    color: #D9EAFE !important;
-                }
-
-        /* Dropdown menu */
+        /* =======================
+   DROPDOWN
+======================= */
         .dropdown-menu {
-            background-color: #D9EAFE; 
+            background-color: #D9EAFE;
+            border-radius: 12px;
             border: none;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
-            .dropdown-menu .dropdown-item {
-                color: #2a3f54;
-                padding: 10px 15px;
+        .dropdown-item {
+            color: #2a3f54;
+            font-weight: 500;
+            padding: 10px 16px;
+        }
+
+            .dropdown-item:hover {
+                background-color: #A7C7E7;
+                color: #ffffff;
             }
 
-                .dropdown-menu .dropdown-item:hover {
-                    background-color: #A7C7E7;
-                    color: white;
-                }
-
-       
+        /* =======================
+   CART BADGE
+======================= */
         .cart-badge {
             background-color: #6AA5D9 !important;
+            font-size: 0.7rem;
+            padding: 4px 6px;
         }
 
-        
+        /* =======================
+   BUTTONS
+======================= */
         .btn-primary {
             background-color: #6AA5D9;
             border: none;
+            font-weight: 500;
+            border-radius: 8px;
         }
 
             .btn-primary:hover {
                 background-color: #4a8dc5;
             }
 
-        
-        footer {
+        .btn-outline-primary {
+            border-color: #6AA5D9;
             color: #6AA5D9;
-            font-weight: 500;
         }
 
-       
-        .card {
-            border: none;
-            border-radius: 15px;
+            .btn-outline-primary:hover {
+                background-color: #6AA5D9;
+                color: #fff;
+            }
+
+        /* =======================
+   SIDEBAR
+======================= */
+        .sidebar {
+            background-color: #D9EAFE;
+            border-radius: 16px;
+            padding: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
-        .card-title {
-            color: #2a3f54;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            transition: 0.2s;
-        }
-     
-        .sidebar {
-            background: #D9EAFE;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-        }
-
         .sidebar-title {
-            font-size: 17px;
-            font-weight: bold;
-            color: #2a3f54;
-            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .sidebar-item {
-            background: #A7C7E7;
-            border: none;
-            margin-bottom: 6px;
-            border-radius: 8px;
-            padding: 10px 12px;
-            transition: 0.2s;
+            background-color: #A7C7E7;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 8px;
         }
 
             .sidebar-item a {
-                text-decoration: none;
-                color: white !important;
+                color: #ffffff !important;
                 font-weight: 500;
             }
 
             .sidebar-item:hover {
-                background: #6AA5D9;
-                transform: translateX(3px);
+                background-color: #6AA5D9;
+                transform: translateX(5px);
             }
 
-        
-        .sidebar input {
-            border: 2px solid #A7C7E7;
-            border-radius: 8px;
+        /* =======================
+   CARD
+======================= */
+        .card {
+            border: none;
+            border-radius: 18px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            transition: all 0.25s ease;
         }
 
-            .sidebar input:focus {
-                border-color: #6AA5D9;
-                box-shadow: 0 0 5px #6AA5D9;
+            .card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             }
+
+        .card-title {
+            font-weight: 600;
+            color: #2a3f54;
+        }
+
+        /* =======================
+   TABLE
+======================= */
+        .table {
+            background-color: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+            .table thead {
+                background-color: #A7C7E7;
+                color: #ffffff;
+            }
+
+            .table th,
+            .table td {
+                vertical-align: middle;
+                text-align: center;
+            }
+
+            .table tbody tr:hover {
+                background-color: #F0F7FF;
+            }
+
+
+        footer {
+            background-color: #BFD7F0;
+            color: #2a3f54;
+            font-weight: 500;
+        }
+
+            footer h5 {
+                font-weight: 700;
+            }
+
+            footer a {
+                color: #2a3f54;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+
+            footer hr {
+                border-color: rgba(0,0,0,0.1);
+            }
+
 
     </style>
 </head>
@@ -207,7 +283,7 @@
                                 <li><a class="dropdown-item text-danger" href="@Url.Action("LoginAD","Account")">Admin</a></li>
                             </ul>
                         </li>
-                       
+
                         <li>@Html.ActionLink("Đăng ký", "CreateThongTinKhachHang", "Account", null, new { @class = "nav-link" })</li>
                     }
                     else
@@ -228,7 +304,7 @@
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="/Account/Profile">Hồ sơ</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("XemDonHang","KhachHang")">Đơn hàng của tôi</a></li>
-                               
+
                                 <li><a class="dropdown-item text-danger" href="/Account/Logout">Đăng xuất</a></li>
                             </ul>
                         </li>
@@ -262,6 +338,50 @@
             @RenderBody()
         </div>
     </div>
+    <footer class="mt-5" style="background-color:#BFD7F0;">
+        <div class="container py-4">
+            <div class="row text-dark">
+
+                <!-- GIỚI THIỆU -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold">📚 BookStore Online</h5>
+                    <p class="small mb-0">
+                        Hệ thống bán sách và quản lý kho trực tuyến.
+                        Hỗ trợ tìm kiếm, đặt hàng và thanh toán nhanh chóng.
+                    </p>
+                </div>
+
+                <!-- LIÊN KẾT -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold">🔗 Liên kết</h5>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-dark text-decoration-none">Trang chủ</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Danh mục sách</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Giỏ hàng</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <!-- LIÊN HỆ -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold">📞 Thông tin liên hệ</h5>
+                    <p class="small mb-1">📍 TP. Hồ Chí Minh</p>
+                    <p class="small mb-1">📧 bookstore@gmail.com</p>
+                    <p class="small mb-1">📱 0909 123 456</p>
+                </div>
+
+            </div>
+
+            <hr class="my-3">
+
+            <!-- COPYRIGHT -->
+            <div class="text-center small text-dark">
+                © 2025 BookStore Online | Nhóm 3
+            </div>
+        </div>
+    </footer>
+
+
 
 
     @Scripts.Render("~/bundles/jquery")

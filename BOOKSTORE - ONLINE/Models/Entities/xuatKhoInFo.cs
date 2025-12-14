@@ -9,6 +9,6 @@ namespace BOOKSTORE___ONLINE.Models.Entities
     {
         public int MaDH { get; set; }
         public int MaNV { get; set; }
-        public int 
+       
     }
 }

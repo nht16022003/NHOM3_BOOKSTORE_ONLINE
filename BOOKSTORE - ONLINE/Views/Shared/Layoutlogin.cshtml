@@ -193,7 +193,7 @@
                                 <li><a class="dropdown-item text-danger" href="@Url.Action("LoginAD","Account")">Admin</a></li>
                             </ul>
                         </li>
-                     
+
                         <li>@Html.ActionLink("Đăng ký", "CreateThongTinKhachHang", "Account", null, new { @class = "nav-link" })</li>
                     }
                     else
@@ -226,6 +226,49 @@
 
 
     @RenderBody()
+
+    <footer class="mt-5" style="background-color:#BFD7F0;">
+        <div class="container py-4">
+            <div class="row text-dark">
+
+                <!-- GIỚI THIỆU -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold">📚 BookStore Online</h5>
+                    <p class="small mb-0">
+                        Hệ thống bán sách và quản lý kho trực tuyến.
+                        Hỗ trợ tìm kiếm, đặt hàng và thanh toán nhanh chóng.
+                    </p>
+                </div>
+
+                <!-- LIÊN KẾT -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold">🔗 Liên kết</h5>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-dark text-decoration-none">Trang chủ</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Danh mục sách</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Giỏ hàng</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <!-- LIÊN HỆ -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold">📞 Thông tin liên hệ</h5>
+                    <p class="small mb-1">📍 TP. Hồ Chí Minh</p>
+                    <p class="small mb-1">📧 bookstore@gmail.com</p>
+                    <p class="small mb-1">📱 0909 123 456</p>
+                </div>
+
+            </div>
+
+            <hr class="my-3">
+
+            <!-- COPYRIGHT -->
+            <div class="text-center small text-dark">
+                © 2025 BookStore Online | Nhóm 3
+            </div>
+        </div>
+    </footer>
 
 
     @Scripts.Render("~/bundles/jquery")

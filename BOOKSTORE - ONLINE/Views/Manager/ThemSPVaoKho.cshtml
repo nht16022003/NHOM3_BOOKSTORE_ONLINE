@@ -1,0 +1,111 @@
+﻿@model BOOKSTORE___ONLINE.Models.DB.SACH
+
+@{
+    ViewBag.Title = "ThemSPVaoKho";
+    Layout = "~/Views/Shared/Layoutlogin.cshtml";
+}
+
+<div class="container my-4">
+
+    <div class="card shadow-lg border-0 rounded-4">
+
+        <!-- HEADER -->
+        <div class="card-header text-white rounded-top-4"
+             style="background: linear-gradient(135deg, #6AA5D9, #A7C7E7);">
+            <h5 class="mb-0 fw-bold">
+                📦 Thêm sản phẩm vào kho
+            </h5>
+        </div>
+
+        <!-- BODY -->
+        <div class="card-body p-4">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                <div class="row g-4">
+
+                    <!-- CỘT TRÁI -->
+                    <div class="col-md-6">
+
+                        <div class="form-floating">
+                            @Html.EditorFor(m => m.MASACH, new { htmlAttributes = new { @class = "form-control", placeholder = "Mã sách" } })
+                            <label>Mã sách</label>
+                        </div>
+
+                        <div class="form-floating mt-3">
+                            @Html.EditorFor(m => m.MADANHMUC, new { htmlAttributes = new { @class = "form-control", placeholder = "Danh mục" } })
+                            <label>Mã danh mục</label>
+                        </div>
+
+                        <div class="form-floating mt-3">
+                            @Html.EditorFor(m => m.MADANHMUC_CHILD, new { htmlAttributes = new { @class = "form-control", placeholder = "Danh mục con" } })
+                            <label>Danh mục con</label>
+                        </div>
+
+                        <div class="form-floating mt-3">
+                            @Html.EditorFor(m => m.TENSACH, new { htmlAttributes = new { @class = "form-control", placeholder = "Tên sách" } })
+                            <label>Tên sách</label>
+                        </div>
+
+                        <div class="form-floating mt-3">
+                            @Html.EditorFor(m => m.TACGIA, new { htmlAttributes = new { @class = "form-control", placeholder = "Tác giả" } })
+                            <label>Tác giả</label>
+                        </div>
+
+                    </div>
+
+                    <!-- CỘT PHẢI -->
+                    <div class="col-md-6">
+
+                        <div class="form-floating">
+                            @Html.EditorFor(m => m.NHAXUATBAN, new { htmlAttributes = new { @class = "form-control", placeholder = "NXB" } })
+                            <label>Nhà xuất bản</label>
+                        </div>
+
+                        <div class="form-floating mt-3">
+                            @Html.EditorFor(m => m.GIABAN, new { htmlAttributes = new { @class = "form-control", placeholder = "Giá bán" } })
+                            <label>Giá bán (VNĐ)</label>
+                        </div>
+
+                        <div class="form-floating mt-3">
+                            @Html.EditorFor(m => m.SOLUONGTONKHO, new { htmlAttributes = new { @class = "form-control", placeholder = "Số lượng" } })
+                            <label>Số lượng tồn kho</label>
+                        </div>
+
+                        <div class="form-floating mt-3">
+                            @Html.EditorFor(m => m.MANHACUNGCAP, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhà cung cấp" } })
+                            <label>Nhà cung cấp</label>
+                        </div>
+
+                        <div class="form-floating mt-3">
+                            @Html.EditorFor(m => m.MOTAFILE, new { htmlAttributes = new { @class = "form-control", placeholder = "File mô tả" } })
+                            <label>File mô tả</label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- MÔ TẢ -->
+                <div class="form-floating mt-4">
+                    @Html.TextAreaFor(m => m.MOTACHITIET, 4, 100,
+                        new { @class = "form-control", placeholder = "Mô tả chi tiết" })
+                    <label>Mô tả chi tiết</label>
+                </div>
+
+                <!-- BUTTON -->
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" class="btn btn-primary px-4 rounded-pill">
+                        <i class="bi bi-plus-circle"></i> Thêm vào kho
+                    </button>
+                    @Html.ActionLink("Quay lại", "Index", null,
+                        new { @class = "btn btn-outline-secondary ms-2 rounded-pill px-4" })
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

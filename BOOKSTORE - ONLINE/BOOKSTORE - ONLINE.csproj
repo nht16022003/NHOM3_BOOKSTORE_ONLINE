@@ -486,6 +486,7 @@
     <Content Include="Views\Manager\traCuuTonKho.cshtml" />
     <Content Include="Views\Manager\DanhMuc_NhanVienPartial.cshtml" />
     <Content Include="Views\Manager\formQLXK.cshtml" />
+    <Content Include="Views\Manager\ThemSPVaoKho.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
